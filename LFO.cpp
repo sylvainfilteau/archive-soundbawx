@@ -56,7 +56,7 @@ void CLFO::Triangle()
 int intposition;
 float CLFO::getNextValeur()
 {
-	if (intposition > m_intphase) intposition = 0;
+	if (intposition >= m_intphase) intposition = 0;
 	return m_fltvaleurs[intposition++];
 }
 

@@ -61,7 +61,7 @@ void main ()
 	printf("---------------------------------------\n");
 
 	CVibrato *vib = new CVibrato(son);
-	vib->Vibrer((float)50, (float)0.9);
+	vib->Vibrer(50, 0.6);
 
 	if (son->Enregistrer("c:\\drumvib.wav"))
 	{
@@ -78,9 +78,9 @@ void main ()
 	/*printf("---------------------------------------\n");
 	printf("Test de CLFO\n");
 
-	CLFO *lfo = new CLFO(LFOSIN, 1102);
+	CLFO *lfo = new CLFO(LFOSIN, 100);
 
-	for (int i = 0; i < 1102; i++)
+	for (int i = 0; i < 150; i++)
 	{
 		printf("%d : %.6f\n", i, lfo->getNextValeur());
 	}
