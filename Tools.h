@@ -7,4 +7,5 @@ public:
 	~CTools(void);
 	int StringComparer(char*, char*, int);
 	int MsToNbSamples(int, int);
+	int NbEchantillonsParCycle(float vitesse, float frequence);
 };

@@ -55,7 +55,7 @@ void main ()
 
 	//delete inv;
 
-	printf("---------------------------------------\n");
+	/*printf("---------------------------------------\n");
 	printf("Test de vibrato\n");
 	printf("---------------------------------------\n");
 
@@ -71,10 +71,10 @@ void main ()
 		printf("Écriture du fichier échoué\n");
 	}
 
-	delete vib;
+	delete vib;*/
 
 
-	/*printf("---------------------------------------\n");
+	printf("---------------------------------------\n");
 	printf("Test de CLFO\n");
 
 	CLFO *lfo = new CLFO(LFOSIN, 44100 / 250);
@@ -82,5 +82,5 @@ void main ()
 	for (int i = 0; i < 44100 / 250; i++)
 	{
 		printf("%d : %.6f\n", i, lfo->getNextValeur());
-	}*/
+	}
 }

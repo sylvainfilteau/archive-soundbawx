@@ -26,3 +26,8 @@ int CTools::MsToNbSamples(int ms, int debit)
 {
 		return ms / 1000 * debit;
 }
+
+int CTools::NbEchantillonsParCycle(float vitesse, float frequence)
+{
+	return (frequence/((1/vitesse)*1000));
+}
