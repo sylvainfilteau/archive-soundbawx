@@ -182,27 +182,30 @@ int CWAVE::Rollback()
 	FILE *flux;
 	int ret = 0;
 
-	flux = fopen(m_strNomFichierBackup, "rb");
-	if (flux != NULL)
+	if (HaveBackup()) // Vérification de l'existence d'un backup.
 	{
-		intCanalGauche = new short[m_intnbEchantillons];
-		fread(intCanalGauche, m_intnbEchantillons * 2, 1, flux);
-		if (m_entete.NumChannels == 2)
+		flux = fopen(m_strNomFichierBackup, "rb");
+		if (flux != NULL)
 		{
-			intCanalDroite = new short[m_intnbEchantillons];
-			fread(intCanalDroite, m_intnbEchantillons * 2, 1, flux);
+			intCanalGauche = new short[m_intnbEchantillons];
+			fread(intCanalGauche, m_intnbEchantillons * 2, 1, flux);
+			if (m_entete.NumChannels == 2)
+			{
+				intCanalDroite = new short[m_intnbEchantillons];
+				fread(intCanalDroite, m_intnbEchantillons * 2, 1, flux);
+			}
+
+			Backup(); // prise du backup avant de mettre les nouvelles valeurs.
+
+			m_intcanalGauche = intCanalGauche;
+			if (m_entete.NumChannels == 2)
+				m_intcanalDroite = intCanalDroite;
+
+			ret = 1;
 		}
 
-		Backup(); // prise du backup avant de mettre les nouvelles valeurs.
-
-		m_intcanalGauche = intCanalGauche;
-		if (m_entete.NumChannels == 2)
-			m_intcanalDroite = intCanalDroite;
-
-		ret = 1;
+		fclose(flux);
 	}
-
-	fclose(flux);
 	return ret;
 }
 

@@ -23,6 +23,7 @@ public:
 	 *
 	 * @param frequence Vitesse du cycle d'une vibration.
 	 * @param mix Pourcentage du mix de l'effet avec le son original.
+	 * @return Vrai si la méthode a réussi
 	 */
-	void Vibrer(float frequence, float mix);
+	int Vibrer(float frequence, float mix);
 };

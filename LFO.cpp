@@ -66,9 +66,11 @@ void CLFO::Reset()
 	m_intposition = 0;
 }
 
+// Mise à jour, la fonction prenait toujours la nouvelle valeur
+// qui n'était pas encore sortie.
 float CLFO::getCurrentValue()
 {
-	return m_fltvaleurs[m_intposition];
+	return m_fltvaleurs[m_intposition - 1];
 }
 
 int CLFO::getLfoType()

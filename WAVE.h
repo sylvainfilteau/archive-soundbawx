@@ -33,7 +33,11 @@ struct WAVEHEADER
  *
  * Cette classe ouvre et enregistre un son de type Wave. Elle fournit
  * toutes les informations nécessaires sur le son afin de le traîter.
- * elle supporte les sons 8 et 16 bits.
+ * elle supporte les sons 8 et 16 bits. Depuis le 18-04-2004, il est
+ * possible de faire des rollback d'une action faite. Pour ce faire, il
+ * est nécessaire d'appeler la méthode Backup() avant tout changement
+ * au vecteurs de sons. Ensuite, il faut appeler la méthode Rollback()
+ * pour revenir en arrière.
  */
 class CWAVE
 {
@@ -93,6 +97,9 @@ public:
 	 * Cette méthode prend une sauvegarde des données afin de pouvoir revenir
 	 * en arrière quand un effet sera appliqué au son.
 	 *
+	 * @see Rollback() qui permet de rétablir les données prises en sauvegarde.
+	 * @see HaveBackup() qui permet de savoir si un backup a déjà été pris.
+	 *
 	 * @return Vrai si la sauvegarde a réussi.
 	 */
 	int Backup(void);
@@ -101,6 +108,9 @@ public:
 	 * Méthode qui reprend les données temporaire stocké dans le fichiers de
 	 * backup et les remet dans les vecteurs de son. Elle en profite pour faire
 	 * un backup des données déjà existente pour refaire un autre rollback.
+	 *
+	 * @see Backup() qui permet de sauvegarder les données afin de pouvoir faire un rollback.
+	 * @see HaveBackup() qui permet de savoir si un backup a déjà été pris.
 	 *
 	 * @return Vrai si la méthode a réussi
 	 */

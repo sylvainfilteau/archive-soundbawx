@@ -14,7 +14,7 @@ void main ()
 	printf("Test de CWAVE\n");
 	printf("---------------------------------------\n");
 
-	CWAVE *son = new CWAVE("c:\\testson\\drum.wav");
+	CWAVE *son = new CWAVE("c:\\testson\\drum.wav", "drum.wav.tmp");
 	if (!son->Ouvrir())
 	{
 		printf("Erreur durant la lecture du son");
@@ -67,18 +67,58 @@ void main ()
 	printf("---------------------------------------\n");
 
 	CVibrato *vib = new CVibrato(son);
-	vib->Vibrer(50, 0.5);
-
-	if (son->Enregistrer("c:\\drumvib.wav"))
+	
+	if (vib->Vibrer(50, 0.5))
 	{
-		printf("Écriture du fichier réussi\n");
+		printf("La vibration a réussi!\n");
+
+		if (son->Enregistrer("c:\\drumvib.wav"))
+		{
+			printf("Écriture du fichier réussi\n");
+		}
+		else
+		{
+			printf("Écriture du fichier échoué\n");
+		}
 	}
 	else
 	{
-		printf("Écriture du fichier échoué\n");
+		printf("La vibration a échoué!\n");
 	}
 
 	delete vib;
+
+	printf("---------------------------------------\n");
+	printf("Test de Rollback #1\n");
+	printf("---------------------------------------\n");
+	
+	if (son->Rollback())
+	{
+		if (son->Enregistrer("c:\\drumroll1.wav"))
+		{
+			printf("Écriture du fichier réussi\n");
+		}
+		else
+		{
+			printf("Écriture du fichier échoué\n");
+		}
+	}
+
+	printf("---------------------------------------\n");
+	printf("Test de Rollback #2\n");
+	printf("---------------------------------------\n");
+	
+	if (son->Rollback())
+	{
+		if (son->Enregistrer("c:\\drumroll2.wav"))
+		{
+			printf("Écriture du fichier réussi\n");
+		}
+		else
+		{
+			printf("Écriture du fichier échoué\n");
+		}
+	}
 
 	/*printf("---------------------------------------\n");
 	printf("Test de distorision\n");
@@ -108,5 +148,7 @@ void main ()
 		printf("%d : %.6f\n", i, lfo->getNextValeur());
 	}
 	delete lfo;*/
+
+	delete son;
 
 }
