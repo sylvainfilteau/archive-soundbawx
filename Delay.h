@@ -32,6 +32,7 @@ public:
 	 * @return Vrai si la méthode a réussi.
 	 *
 	 * @todo Commencer et compléter l'effet ;)
+	 * @todo L'effet fait un fadeout, la valeur de mixé est toujours égale à zéro.
 	 *
 	 * Cette méthode applique au son un effet de délais. Un effet de délais est
 	 * un effet d'écho. On répète le son après un nombre x de milliseconde et

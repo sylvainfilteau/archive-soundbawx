@@ -16,6 +16,7 @@
 #include "Vibrato.h"
 #include "Effet.h"
 #include "Distorsion.h"
+#include "Delay.h"
 
 void main () 
 {
@@ -129,7 +130,7 @@ void main ()
 		{
 			printf("Écriture du fichier échoué\n");
 		}
-	}*/
+	}
 
 	printf("---------------------------------------\n");
 	printf("Test de distorision\n");
@@ -147,7 +148,30 @@ void main ()
 		printf("Écriture du fichier échoué\n");
 	}
 
-	delete dis;
+	delete dis;*/
+
+	printf("---------------------------------------\n");
+	printf("Test de Delay\n");
+	printf("---------------------------------------\n");
+
+	CDelay *delay = new CDelay(son);
+	if (delay->AppliquerDelais(100, 0.90, 0.50))
+	{
+		if (son->Enregistrer("c:\\drumdelay.wav"))
+		{
+			printf("Écriture du fichier réussi\n");
+		}
+		else
+		{
+			printf("Écriture du fichier échoué\n");
+		}
+	}
+	else
+	{
+		printf("Effet échoué\n");
+	}
+
+	delete delay;
 
 	/*printf("---------------------------------------\n");
 	printf("Test de CLFO\n");

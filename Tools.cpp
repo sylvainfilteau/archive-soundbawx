@@ -22,7 +22,7 @@ int CTools::StringComparer( char *string1, char *string2, int nbChar )
 	return 1;
 }
 
-void SoundCopier( short *orig, short *copie, int longueur)
+void CTools::SoundCopier( short *orig, short *copie, int longueur)
 {
 	for (int i = 0; i < longueur; i++)
 	{
