@@ -11,7 +11,7 @@ void main ()
 	printf("Test de CWAVE\n");
 	printf("---------------------------------------\n");
 
-	CWAVE *son = new CWAVE("c:\\windows\\media\\tada.wav");
+	CWAVE *son = new CWAVE("c:\\testson\\ding.wav");
 
 	if (son != 0)
 	{
@@ -22,7 +22,7 @@ void main ()
 		printf("SampleRate:	%d\n", son->Entete().SampleRate);
 		printf("ByteRate:	%d\n", son->Entete().ByteRate);
 
-		if (son->Enregistrer("c:\\tada2.wav"))
+		if (son->Enregistrer("c:\\ding2.wav"))
 		{
 			printf("Écriture du fichier réussi\n");
 		}
@@ -43,7 +43,7 @@ void main ()
 	CInversion *inv = new CInversion(son);
 	inv->Inverser();
 
-	if (son->Enregistrer("c:\\tadainv.wav"))
+	if (son->Enregistrer("c:\\dinginv.wav"))
 	{
 		printf("Écriture du fichier réussi\n");
 	}
@@ -54,13 +54,13 @@ void main ()
 
 	delete inv;
 
-	//printf("---------------------------------------\n");
-	//printf("Test de CLFO\n");
+	/*printf("---------------------------------------\n");
+	printf("Test de CLFO\n");
 
-	//CLFO *lfo = new CLFO(LFOTRIANGLE, 44100 / 250);
+	CLFO *lfo = new CLFO(LFOSIN, 44100 / 250);
 
-	//for (int i = 0; i < 44100 / 250; i++)
-	//{
-	//	printf("%d : %.6f\n", i, lfo->getNextValeur());
-	//}
+	for (int i = 0; i < 44100 / 250; i++)
+	{
+		printf("%d : %.6f\n", i, lfo->getNextValeur());
+	}*/
 }

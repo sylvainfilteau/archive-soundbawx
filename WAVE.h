@@ -30,6 +30,7 @@ public:
 	WAVEHEADER Entete(void);
     int* getCanalGauche(void);
 	int* getCanalDroite(void);
+	int getNbEchantillon(void);
 	void setCanalGauche(int*);
 	void setCanalDroite(int*);
 
@@ -39,5 +40,6 @@ private:
 	char* m_strnomFichier;
 	int* m_intcanalGauche;
     int* m_intcanalDroite;
+	int m_intnbEchantillons;
 	WAVEHEADER m_entete;
 };

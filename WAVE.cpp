@@ -9,6 +9,7 @@ CWAVE::CWAVE(char* strnomFichier)
 	int intnbPass = 0;
 	BYTE bytvaleur = 0;
 	CTools tools;
+	m_strnomFichier = strnomFichier;
 
 	flux = fopen(strnomFichier, "rb");
 
@@ -22,13 +23,27 @@ CWAVE::CWAVE(char* strnomFichier)
 			tools.StringComparer(m_entete.Subchunk1ID, "fmt ", 4) && 
 			tools.StringComparer(m_entete.Subchunk2ID, "data", 4))
 		{
+
 			// initialisation des vecteurs qui contiennent le son
+			// initialisation du nombre d'échantillons
 			if (m_entete.NumChannels == 1)
-				m_intcanalGauche = new int[m_entete.Subchunk2Size];
+			{
+				if (m_entete.BitsPerSample == 8)
+					m_intnbEchantillons = (int)m_entete.Subchunk2Size;
+				else
+					m_intnbEchantillons = (int)m_entete.Subchunk2Size / 2;
+
+				m_intcanalGauche = new int[m_intnbEchantillons];
+			}
 			else
 			{
-				m_intcanalGauche = new int[m_entete.Subchunk2Size/2];
-				m_intcanalDroite = new int[m_entete.Subchunk2Size/2];
+				if (m_entete.BitsPerSample == 8)
+					m_intnbEchantillons = (int)m_entete.Subchunk2Size / 2;
+				else
+					m_intnbEchantillons = (int)m_entete.Subchunk2Size / 4;
+
+				m_intcanalGauche = new int[m_intnbEchantillons];
+				m_intcanalDroite = new int[m_intnbEchantillons];
 			}				
 
 			// Lecture du reste du fichier
@@ -37,11 +52,12 @@ CWAVE::CWAVE(char* strnomFichier)
 			en 16 bits, c'est un signed int. Il faut donc faire une conversion
 			à l'aide de la fonction ByteToInt
 			*/
-			for (int i = 0; i < m_entete.Subchunk2Size; i++)
+			for (int i = 0; i < m_intnbEchantillons; i++)
 			{
+
 				if (m_entete.BitsPerSample == 16)
 				{
-					fread(&m_intcanalGauche[i], sizeof(int), 1, flux);
+					fread(&m_intcanalGauche[i], sizeof(short), 1, flux);
 				}
 				else if (m_entete.BitsPerSample == 8)
 				{
@@ -52,7 +68,7 @@ CWAVE::CWAVE(char* strnomFichier)
 				{
 					if (m_entete.BitsPerSample == 16)
 					{
-						fread(&m_intcanalDroite[i], sizeof(int), 1, flux);
+						fread(&m_intcanalDroite[i], sizeof(short), 1, flux);
 					}
 					else if (m_entete.BitsPerSample == 8)
 					{
@@ -97,12 +113,11 @@ int CWAVE::Enregistrer(char *strnomFichier)
 	else
 	{
 		fwrite(&m_entete, sizeof(WAVEHEADER), 1, flux);
-		int intGrandeurVect = m_entete.Subchunk2Size/m_entete.NumChannels;
-		for (int i = 0; i < intGrandeurVect; i++)
+		for (int i = 0; i < m_intnbEchantillons; i++)
 		{
 			if (m_entete.BitsPerSample == 16)
 			{
-				fwrite(&m_intcanalGauche[i], sizeof(int), 1, flux);
+				fwrite(&m_intcanalGauche[i], sizeof(short), 1, flux);
 			}
 			else if (m_entete.BitsPerSample == 8)
 			{
@@ -113,7 +128,7 @@ int CWAVE::Enregistrer(char *strnomFichier)
 			{
 				if (m_entete.BitsPerSample == 16)
 				{
-					fwrite(&m_intcanalDroite[i], sizeof(int), 1, flux);
+					fwrite(&m_intcanalDroite[i], sizeof(short), 1, flux);
 				}
 				else if (m_entete.BitsPerSample == 8)
 				{
@@ -163,4 +178,9 @@ void CWAVE::setCanalDroite(int* intvaleurs)
 void CWAVE::setCanalGauche(int* intvaleurs)
 {
 	m_intcanalGauche = intvaleurs;
+}
+
+int CWAVE::getNbEchantillon(void)
+{
+	return m_intnbEchantillons;
 }
