@@ -24,11 +24,11 @@ void CVibrato::Vibrer(float frequence, float mix)
 		tmpLfo = lfo->getNextValeur();
 		if (tmpLfo != 1)
 		{
-			intCanalG[i] = (short)((1-mix)*intCanalG[i]) + (short)(intCanalG[i] * tmpLfo * mix);
+			intCanalG[i] = (int)(((1-mix)*intCanalG[i]) + ((intCanalG[i] * tmpLfo) * mix));
 			
 			if (m_son->Entete().NumChannels == 2)
 			{
-				intCanalD[i] = (short)((1-mix)*intCanalD[i]) + (short)(intCanalD[i] * tmpLfo * mix);
+				intCanalD[i] = (int)(((1-mix)*intCanalD[i]) + ((intCanalD[i] * tmpLfo) * mix));
 			}
 		}
 	}
