@@ -31,7 +31,7 @@ int CVibrato::Vibrer(float frequence, float mix)
 				m_son->getCanalGauche()[i] = tool.Mixer(m_son->getCanalGauche()[i], 
 					m_son->getCanalGauche()[i] * lfo->getNextValeur(), mix);
 				
-				if (m_son->Entete().NumChannels == 2)
+				if (m_son->Stereo())
 				{
 					m_son->getCanalDroite()[i] = tool.Mixer(m_son->getCanalDroite()[i], 
 						m_son->getCanalDroite()[i] * lfo->getCurrentValue(), mix);

@@ -16,6 +16,9 @@
  * 1 (RIFF)  : Partie qui décrit tout l'entête,
  * 2 (Format): Partie qui décrit le format du son,
  * 3 (Data)  : Partie qui décrit la grosseur du son et le son lui même.
+ * Plus d'info sur le format wave: 
+ * http://www-ccrma.stanford.edu/CCRMA/Courses/422/projects/WaveFormat/
+ * http://www.lightlink.com/tjweber/StripWav/WAVE.html
  */
 struct WAVEHEADER
 {
@@ -28,7 +31,7 @@ struct WAVEHEADER
 	DWORD Subchunk1Size;	//!< Grosseur de la deuxième partie de l'entête
 	WORD AudioFormat;		//!< ?
 	WORD NumChannels;		//!< Nombre de canaux du son: 1 = mono, 2 = stéréo
-	DWORD SampleRate;		//!< ?
+	DWORD SampleRate;		//!< Nombre d'échantillon par seconde.
 	DWORD ByteRate;			//!< ?
 	WORD BlockAlign;		//!< ?
 	WORD BitsPerSample;		//!< Nombre de d'octet par échantillon: 8 pour 8bits, 16 pour 16 bits
@@ -99,6 +102,10 @@ public:
 	 * @return Nombre d'échantillons du son.
 	 */
 	int getNbEchantillon(void);
+	//! \brief Propriété qui retourne vrai si le son est stéréo
+	int Stereo();
+	//! \brief Nombre d'échantillon par milliseconde
+	int NbSamplesParMs();
 
 	/*! \brief Méthode qui prend une sauvegarde des données.
 	 *

@@ -8,9 +8,7 @@
  */
 #include "distorsion.h"
 
-CDistorsion::CDistorsion(CWAVE *son): CEffet(son)
-{
-}
+CDistorsion::CDistorsion(CWAVE *son): CEffet(son){}
 
 void CDistorsion::Distorsionner(int valmultiplie)
 {
@@ -22,7 +20,7 @@ void CDistorsion::Distorsionner(int valmultiplie)
 		if (m_son->getCanalGauche()[i] > maxgauche)
 			maxgauche = m_son->getCanalGauche()[i];
 
-		if (m_son->Entete().NumChannels == 2 && m_son->getCanalDroite()[i] > maxdroite)
+		if (m_son->Stereo() && m_son->getCanalDroite()[i] > maxdroite)
 			maxdroite = m_son->getCanalDroite()[i];
 	}
 
@@ -35,7 +33,7 @@ void CDistorsion::Distorsionner(int valmultiplie)
 		else
 			m_son->getCanalGauche()[i] = m_son->getCanalGauche()[i] * valmultiplie;
 
-		if (m_son->Entete().NumChannels == 2 && (m_son->getCanalDroite()[i] * valmultiplie) > maxdroite)
+		if (m_son->Stereo() && (m_son->getCanalDroite()[i] * valmultiplie) > maxdroite)
 			m_son->getCanalDroite()[i] = maxdroite;
 		else
 			m_son->getCanalDroite()[i] = m_son->getCanalDroite()[i] * valmultiplie;

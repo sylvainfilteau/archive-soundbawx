@@ -217,10 +217,25 @@ int CWAVE::Rollback()
 	return ret;
 }
 
-// Propriété qui retourne si le son a un backup
+// Propriété qui retourne vrai si le son a un backup
 int CWAVE::HaveBackup()
 {
 	return m_intHaveBackup;
+}
+
+// Propriété qui retourne vrai si le son est stéréo
+int CWAVE::Stereo()
+{
+	if (m_entete.NumChannels == 1)
+		return 0;
+	else
+		return 1;
+}
+
+// Propriété qui retourne le nombre de samples par milliseconde
+int CWAVE::NbSamplesParMs()
+{
+	return m_entete.SampleRate / 1000;
 }
 
 // Fonction de conversion de Byte à Int
