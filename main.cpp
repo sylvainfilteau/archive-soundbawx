@@ -2,6 +2,7 @@
 #include "WAVE.h"
 #include "LFO.h"
 #include "Inversion.h"
+#include "Vibrato.h"
 
 void main () 
 {
@@ -11,7 +12,7 @@ void main ()
 	printf("Test de CWAVE\n");
 	printf("---------------------------------------\n");
 
-	CWAVE *son = new CWAVE("c:\\testson\\ding.wav");
+	CWAVE *son = new CWAVE("c:\\testson\\drum.wav");
 
 	if (son != 0)
 	{
@@ -22,7 +23,7 @@ void main ()
 		printf("SampleRate:	%d\n", son->Entete().SampleRate);
 		printf("ByteRate:	%d\n", son->Entete().ByteRate);
 
-		if (son->Enregistrer("c:\\ding2.wav"))
+		if (son->Enregistrer("c:\\drum2.wav"))
 		{
 			printf("Écriture du fichier réussi\n");
 		}
@@ -43,7 +44,7 @@ void main ()
 	CInversion *inv = new CInversion(son);
 	inv->Inverser();
 
-	if (son->Enregistrer("c:\\dinginv.wav"))
+	if (son->Enregistrer("c:\\druminv.wav"))
 	{
 		printf("Écriture du fichier réussi\n");
 	}
@@ -53,6 +54,25 @@ void main ()
 	}
 
 	delete inv;
+
+	printf("---------------------------------------\n");
+	printf("Test de vibrato\n");
+	printf("---------------------------------------\n");
+
+	CVibrato *vib = new CVibrato(son);
+	vib->Vibrer(50, 80);
+
+	if (son->Enregistrer("c:\\drumvib.wav"))
+	{
+		printf("Écriture du fichier réussi\n");
+	}
+	else
+	{
+		printf("Écriture du fichier échoué\n");
+	}
+
+	delete vib;
+
 
 	/*printf("---------------------------------------\n");
 	printf("Test de CLFO\n");

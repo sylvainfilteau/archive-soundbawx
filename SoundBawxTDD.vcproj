@@ -112,6 +112,9 @@
 				RelativePath="Tools.cpp">
 			</File>
 			<File
+				RelativePath="Vibrato.cpp">
+			</File>
+			<File
 				RelativePath="WAVE.cpp">
 			</File>
 			<File
@@ -129,6 +132,9 @@
 			</File>
 			<File
 				RelativePath="Tools.h">
+			</File>
+			<File
+				RelativePath="Vibrato.h">
 			</File>
 			<File
 				RelativePath="WAVE.h">
