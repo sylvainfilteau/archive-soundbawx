@@ -1,24 +1,32 @@
 #pragma once
 #include <windows.h>
 
+/*! \brief Structure qui contient l'entête d'un fichier Wave.
+ *
+ * Chacune des valeurs sers à définir comment est composé le
+ * son et les spécifications du wave. L'entête se divise en trois partie:
+ * 1 (RIFF)  : Partie qui décrit tout l'entête,
+ * 2 (Format): Partie qui décrit le format du son,
+ * 3 (Data)  : Partie qui décrit la grosseur du son et le son lui même.
+ */
 struct WAVEHEADER
 {
 	// Riff chunk
-	char ChunkID[4];		// doit contenir le mot "RIFF"
-	DWORD ChunkSize;
-	char Format[4];			// doit contenir le mot "WAVE"
+	char ChunkID[4];		//!< doit contenir le mot "RIFF"
+	DWORD ChunkSize;		//!< Grosseur de l'entête
+	char Format[4];			//!< doit contenir le mot "WAVE"
 	// fmt sub-chunk
-	char Subchunk1ID[4];	// doit contenir le mot "fmt "
-	DWORD Subchunk1Size;	
-	WORD AudioFormat;
-	WORD NumChannels;		// 1 = mono, 2 = stéréo
-	DWORD SampleRate;
-	DWORD ByteRate;
-	WORD BlockAlign;
-	WORD BitsPerSample;		// 8 pour 8bits, 16 pour 16 bits
+	char Subchunk1ID[4];	//!< doit contenir le mot "fmt "
+	DWORD Subchunk1Size;	//!< Grosseur de la deuxième partie de l'entête
+	WORD AudioFormat;		//!< ?
+	WORD NumChannels;		//!< Nombre de canaux du son: 1 = mono, 2 = stéréo
+	DWORD SampleRate;		//!< ?
+	DWORD ByteRate;			//!< ?
+	WORD BlockAlign;		//!< ?
+	WORD BitsPerSample;		//!< Nombre de d'octet par échantillon: 8 pour 8bits, 16 pour 16 bits
 	// data sub-chunk
-	char Subchunk2ID[4];		// doit contenir le mot "data"
-	DWORD Subchunk2Size;
+	char Subchunk2ID[4];	//!< doit contenir le mot "data"
+	DWORD Subchunk2Size;	//!< La grosseur du son
 };
 
 /*! \brief Classe qui stocke le son de type Wave.
@@ -41,6 +49,18 @@ public:
 	CWAVE(char* strnomFichier);
 	//! \brief Destructeur de la classe.
 	~CWAVE(void);
+	/*! \brief Méthode qui ouvre le son et le stock dans des vecteurs.
+	 *
+	 * La méthode ouvre le fichier donnée au constructeur et stocke chacun des
+	 * échantillons dans un vecteur de type short. Si c'est un son
+	 * 8 bits, il convertit chacun des échantillons de BYTE à short. Pour que
+	 * l'ouverture se fasse avec succès, il est nécessaire que l'entête du son
+	 * fournisse les valeurs suivantes: ChunkID=RIFF, Format=WAVE, Subchunk1ID="fmt "
+	 * et Subchunk2ID=data.
+	 *
+	 * @return Vrai si l'ouverture s'est fait avec succès.
+	 */
+	int Ouvrir();
 	/*! \brief Méthode d'enregistrement du fichier.
 	 *
 	 * @param strnomFichier Endroit où le son doit être écrit.

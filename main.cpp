@@ -4,6 +4,7 @@
 #include "Inversion.h"
 #include "Vibrato.h"
 #include "effet.h"
+#include "distorsion.h"
 
 void main () 
 {
@@ -14,6 +15,11 @@ void main ()
 	printf("---------------------------------------\n");
 
 	CWAVE *son = new CWAVE("c:\\testson\\drum.wav");
+	if (!son->Ouvrir())
+	{
+		printf("Erreur durant la lecture du son");
+		return;
+	}
 
 	if (son != 0) // Je crois que cette vérification est inutile car elle est toujours vrai.
 	{
@@ -61,7 +67,7 @@ void main ()
 	printf("---------------------------------------\n");
 
 	CVibrato *vib = new CVibrato(son);
-	vib->Vibrer(50, 0.6);
+	vib->Vibrer(50, 0.5);
 
 	if (son->Enregistrer("c:\\drumvib.wav"))
 	{
@@ -74,8 +80,25 @@ void main ()
 
 	delete vib;
 
-
 	/*printf("---------------------------------------\n");
+	printf("Test de distorision\n");
+	printf("---------------------------------------\n");
+
+	CDistorsion *dis = new CDistorsion(son);
+	dis->Distorsionner(20);
+
+	if (son->Enregistrer("c:\\drumdis.wav"))
+	{
+		printf("Écriture du fichier réussi\n");
+	}
+	else
+	{
+		printf("Écriture du fichier échoué\n");
+	}
+
+	delete dis;
+
+	printf("---------------------------------------\n");
 	printf("Test de CLFO\n");
 
 	CLFO *lfo = new CLFO(LFOSIN, 100);

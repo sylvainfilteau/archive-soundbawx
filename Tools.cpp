@@ -23,3 +23,8 @@ int CTools::NbEchantillonsParCycle(float vitesse, float frequence)
 {
 	return (frequence/((1/vitesse)*1000));
 }
+
+short CTools::Mixer(short son1, short son2, float mix)
+{
+	return ((1-mix) * son1) + (mix * son2);
+}

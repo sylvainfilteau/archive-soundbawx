@@ -14,6 +14,10 @@ class CVibrato :
 	public CEffet
 {
 public:
+	/*! \brief Constructeur de la classe
+	 *
+	 * @param son Le son à appliquer l'effet
+	 */
 	CVibrato(CWAVE *son);
 	/*! \brief Méthode qui exécute l'effet sur le son.
 	 *

@@ -17,5 +17,5 @@ public:
 	/*! \brief Destructeur de la classe */
 	~CEffet(void);
 protected:
-	CWAVE *m_son;
+	CWAVE *m_son; //!< Source du son où sera appliqué l'effet
 };

@@ -5,13 +5,24 @@
 
 CWAVE::CWAVE(char* strnomFichier)
 {
+	m_strnomFichier = strnomFichier;
+}
+
+CWAVE::~CWAVE(void)
+{
+	delete[] m_intcanalDroite;
+	delete[] m_intcanalGauche;
+}
+
+int CWAVE::Ouvrir()
+{
 	FILE* flux;
 	int intnbPass = 0;
 	BYTE bytvaleur = 0;
 	CTools tools;
-	m_strnomFichier = strnomFichier;
+	int ret = 0;
 
-	flux = fopen(strnomFichier, "rb");
+	flux = fopen(m_strnomFichier, "rb");
 
 	if (flux != NULL)
 	{
@@ -77,17 +88,13 @@ CWAVE::CWAVE(char* strnomFichier)
 					}
 				}
 			}
+
+			ret = 1;
 		}
 	}
 
 	fclose(flux);
-
-}
-
-CWAVE::~CWAVE(void)
-{
-	delete[] m_intcanalDroite;
-	delete[] m_intcanalGauche;
+	return ret;
 }
 
 // Méthode d'enregistrement du son.

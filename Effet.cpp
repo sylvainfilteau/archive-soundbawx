@@ -7,5 +7,4 @@ CEffet::CEffet(CWAVE *son)
 
 CEffet::~CEffet(void)
 {
-	
 }

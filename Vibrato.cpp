@@ -19,11 +19,11 @@ void CVibrato::Vibrer(float frequence, float mix)
 		tmpLfo = lfo->getNextValeur();
 		if (tmpLfo != 1)
 		{
-			shtCanalG[i] = (short)(((1-mix)*shtCanalG[i]) + ((shtCanalG[i] * tmpLfo) * mix));
+			shtCanalG[i] = tool.Mixer(shtCanalG[i], shtCanalG[i] * tmpLfo, mix);
 			
 			if (m_son->Entete().NumChannels == 2)
 			{
-				shtCanalD[i] = (short)(((1-mix)*shtCanalD[i]) + ((shtCanalD[i] * tmpLfo) * mix));
+				shtCanalD[i] = tool.Mixer(shtCanalD[i], shtCanalD[i] * tmpLfo, mix);
 			}
 		}
 	}

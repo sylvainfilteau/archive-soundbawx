@@ -14,6 +14,10 @@ class CInversion :
 	public CEffet
 {
 public:
+	/*! \brief Constructeur de la classe
+	 *
+	 * @param son Le son à appliquer l'effet
+	 */
 	CInversion(CWAVE *son);
 	/*! \brief Méthode qui applique l'inversion au son.
 	 *

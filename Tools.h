@@ -14,4 +14,6 @@ public:
 	int MsToNbSamples(int, int);
 	//! \brief Retourne un nombre d'échantillon par cycle par rapport à la vitesse du son et la frequence.
 	int NbEchantillonsParCycle(float vitesse, float frequence);
+	//! \brief Retourne le résultat d'un son mixer à un pourcentage donnée avec un autre son.
+	short Mixer(short son1, short son2, float mix);
 };
