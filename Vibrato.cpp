@@ -1,3 +1,11 @@
+/*! \file Vibrato.cpp
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 1.0
+ *
+ * \brief Corp de la classe CVibrato
+ */
 #include "vibrato.h"
 #include "LFO.h"
 #include "Tools.h"

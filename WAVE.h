@@ -1,3 +1,11 @@
+/*! \file WAVE.h
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 0.6
+ *
+ * \brief Entête de la classe CWAVE et la structure d'une entête de fichier wave
+ */
 #pragma once
 #include <windows.h>
 

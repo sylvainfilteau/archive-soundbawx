@@ -1,3 +1,11 @@
+/*! \file Tools.cpp
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 0.5
+ *
+ * \brief Corp de la classe CTools
+ */
 #include "tools.h"
 
 // Fonction de comparaison de deux chaînes de caractères

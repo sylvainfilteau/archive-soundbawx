@@ -1,8 +1,14 @@
+/*! \file Inversion.cpp
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 0.9
+ *
+ * \brief Corp de la classe CInversion
+ */
 #include "inversion.h"
 
-CInversion::CInversion(CWAVE *son) : CEffet(son)
-{
-}
+CInversion::CInversion(CWAVE *son) : CEffet(son){}
 
 void CInversion::Inverser()
 {

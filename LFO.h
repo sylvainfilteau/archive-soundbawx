@@ -1,7 +1,15 @@
+/*! \file LFO.h
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 1.0
+ *
+ * \brief Entête de la classe CLFO
+ */
 #pragma once
 
-const int LFOSIN = 1;
-const int LFOTRIANGLE = 2;
+const int LFOSIN = 1; //!< Constante qui définit un LFO sinusoïdale
+const int LFOTRIANGLE = 2; //!< Constante qui définit un LFO triangulaire
 
 /*! \brief Classe qui génère un signal LFO (Low Frequency Oscillator)
  *

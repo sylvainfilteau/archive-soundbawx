@@ -1,3 +1,11 @@
+/*! \file Distorsion.h
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 0.6
+ *
+ * \brief Entête de la classe CDistorsion
+ */
 #pragma once
 #include "effet.h"
 

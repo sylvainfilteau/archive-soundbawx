@@ -1,3 +1,11 @@
+/*! \file Effet.h
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 1.0
+ *
+ * \brief Entête de la classe CEffet
+ */
 #pragma once
 #include "WAVE.h"
 

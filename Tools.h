@@ -1,3 +1,11 @@
+/*! \file Tools.h
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 0.5
+ *
+ * \brief Entête de la classe CTools
+ */
 #pragma once
 
 /*! \brief Classe utilitaire

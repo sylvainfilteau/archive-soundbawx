@@ -1,10 +1,21 @@
+/*! \file main.cpp
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 0.6
+ *
+ * \brief Fichier du main du programme.
+ *
+ * Ce fichier est pour accueillir la fonction main qui sert
+ * à tester les classes pour le logiciel SoundBawx
+ */
 #include <stdio.h>
 #include "WAVE.h"
 #include "LFO.h"
 #include "Inversion.h"
 #include "Vibrato.h"
-#include "effet.h"
-#include "distorsion.h"
+#include "Effet.h"
+#include "Distorsion.h"
 
 void main () 
 {

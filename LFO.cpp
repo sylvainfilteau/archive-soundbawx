@@ -1,3 +1,11 @@
+/*! \file LFO.cpp
+ * @author Sylvain Filteau <admin@cidsphere.com>
+ * @author Philippe Tremblay <pht@infodev.ca>
+ * @date avril 2004
+ * @version 1.0
+ *
+ * \brief Corp de la classe CLFO
+ */
 #include "lfo.h"
 #include "math.h"
 #define _PI 3.141593
