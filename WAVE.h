@@ -46,7 +46,7 @@ public:
 	 * échantillons dans un vecteur de type short. Si c'est un son
 	 * 8 bits, il convertit chacun des échantillons de BYTE à short.
 	 */
-	CWAVE(char* strnomFichier);
+	CWAVE(char* strnomFichier, char* strnomFichierBackup);
 	//! \brief Destructeur de la classe.
 	~CWAVE(void);
 	/*! \brief Méthode qui ouvre le son et le stock dans des vecteurs.
@@ -88,6 +88,26 @@ public:
 	 */
 	int getNbEchantillon(void);
 
+	/*! \brief Méthode qui prend une sauvegarde des données.
+	 *
+	 * Cette méthode prend une sauvegarde des données afin de pouvoir revenir
+	 * en arrière quand un effet sera appliqué au son.
+	 *
+	 * @return Vrai si la sauvegarde a réussi.
+	 */
+	int Backup(void);
+	/*! \brief Méthode qui reprend les données temporaire
+	 *
+	 * Méthode qui reprend les données temporaire stocké dans le fichiers de
+	 * backup et les remet dans les vecteurs de son. Elle en profite pour faire
+	 * un backup des données déjà existente pour refaire un autre rollback.
+	 *
+	 * @return Vrai si la méthode a réussi
+	 */
+	int Rollback(void);
+	//! \brief Propriété qui retourne si le programme a un backup d'une ancienne valeur.
+	int HaveBackup(void);
+
 private:
 	/*! \brief Méthode qui converti un Byte en short
 	 *
@@ -107,9 +127,11 @@ private:
 	 * pour l'écrire.
 	 */
 	BYTE ShortToByte(short valeur);
-	char* m_strnomFichier; //!< Nom du fichier wave ouvert
-	short* m_intcanalGauche; //!< Vecteur qui contient le son du canal de gauche
-    short* m_intcanalDroite; //!< Vecteur qui contient le son du canal de droite quand le son a deux canal
-	int m_intnbEchantillons; //!< Nombre d'échantillon du son
-	WAVEHEADER m_entete; //!< Entete du fichier wave
+	char* m_strnomFichier; //!< Nom du fichier wave ouvert.
+	char* m_strNomFichierBackup; //!< Nom du fichier ou sera pris la sauvegarde.
+	short* m_intcanalGauche; //!< Vecteur qui contient le son du canal de gauche.
+    short* m_intcanalDroite; //!< Vecteur qui contient le son du canal de droite quand le son a deux canal.
+	int m_intnbEchantillons; //!< Nombre d'échantillon du son.
+	WAVEHEADER m_entete; //!< Entete du fichier wave.
+	int m_intHaveBackup; //!< Valeur qui indique si le son possède un backup.
 };

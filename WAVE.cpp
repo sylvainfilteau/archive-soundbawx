@@ -3,13 +3,16 @@
 #include <stdio.h>
 #include <windows.h>
 
-CWAVE::CWAVE(char* strnomFichier)
+CWAVE::CWAVE(char* strnomFichier, char* strNomFichierBackup)
 {
 	m_strnomFichier = strnomFichier;
+	m_strNomFichierBackup = strNomFichierBackup;
+	m_intHaveBackup = 0;
 }
 
 CWAVE::~CWAVE(void)
 {
+	remove(m_strNomFichierBackup);
 	delete[] m_intcanalDroite;
 	delete[] m_intcanalGauche;
 }
@@ -148,6 +151,65 @@ int CWAVE::Enregistrer(char *strnomFichier)
 
 	fclose(flux);
 	return 1;
+}
+
+// Méthode qui prend une sauvegarde dans le fichier de backup du son
+int CWAVE::Backup()
+{
+	FILE* flux;
+	int ret = 0;
+
+	flux = fopen(m_strNomFichierBackup, "wb");
+	if (flux != NULL)
+	{
+		fwrite(m_intcanalGauche, getNbEchantillon()*sizeof(short), 1, flux);
+		if (m_entete.NumChannels == 2)
+			fwrite(m_intcanalDroite, getNbEchantillon()*2, 1, flux);
+
+		ret = 1;
+		m_intHaveBackup = 1;
+	}
+
+	fclose(flux);
+	return ret;
+}
+
+// Méthode qui lit le fichier temporaire si il existe.
+int CWAVE::Rollback()
+{
+	short* intCanalGauche;
+	short* intCanalDroite;
+	FILE *flux;
+	int ret = 0;
+
+	flux = fopen(m_strNomFichierBackup, "rb");
+	if (flux != NULL)
+	{
+		intCanalGauche = new short[m_intnbEchantillons];
+		fread(intCanalGauche, m_intnbEchantillons * 2, 1, flux);
+		if (m_entete.NumChannels == 2)
+		{
+			intCanalDroite = new short[m_intnbEchantillons];
+			fread(intCanalDroite, m_intnbEchantillons * 2, 1, flux);
+		}
+
+		Backup(); // prise du backup avant de mettre les nouvelles valeurs.
+
+		m_intcanalGauche = intCanalGauche;
+		if (m_entete.NumChannels == 2)
+			m_intcanalDroite = intCanalDroite;
+
+		ret = 1;
+	}
+
+	fclose(flux);
+	return ret;
+}
+
+// Propriété qui retourne si le son a un backup
+int CWAVE::HaveBackup()
+{
+	return m_intHaveBackup;
 }
 
 // Fonction de conversion de Byte à Int
