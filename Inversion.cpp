@@ -1,8 +1,7 @@
 #include "inversion.h"
 
-CInversion::CInversion(CWAVE* son)
+CInversion::CInversion(CWAVE *son) : CEffet(son)
 {
-	m_son = son;
 }
 
 void CInversion::Inverser()
@@ -24,8 +23,4 @@ void CInversion::Inverser()
 			shtCanalDroite[m_son->getNbEchantillon() - i] = shttmp;
 		}
 	}
-}
-
-CInversion::~CInversion(void)
-{
 }

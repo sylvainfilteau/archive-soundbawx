@@ -22,13 +22,13 @@ CLFO::CLFO(int intlfoType, int intphase)
 
 CLFO::~CLFO(void)
 {
-	delete[] m_fltvaleurs;
+	delete [] m_fltvaleurs;
 }
 
 // Crée un Sinus déphasé
 void CLFO::Sinus()
 {
-	for (int i = 0; i <= m_intphase; i++)
+	for (int i = 0; i < m_intphase; i++)
 	{
 		m_fltvaleurs[i] = cos(i * 2 * _PI / m_intphase) / 2 + 0.5;
 	}
@@ -38,7 +38,7 @@ void CLFO::Sinus()
 void CLFO::Triangle()
 {
 	float val = 0;
-	for (int i = 0; i <= m_intphase; i++)
+	for (int i = 0; i < m_intphase; i++)
 	{
 		// si la position du compteur a dépassé la moitié de
 		// la phase, on inverse la courbe.

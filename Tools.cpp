@@ -1,13 +1,5 @@
 #include "tools.h"
 
-CTools::CTools(void)
-{
-}
-
-CTools::~CTools(void)
-{
-}
-
 // Fonction de comparaison de deux chaînes de caractères
 int CTools::StringComparer( char *string1, char *string2, int nbChar )
 {

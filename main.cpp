@@ -3,6 +3,7 @@
 #include "LFO.h"
 #include "Inversion.h"
 #include "Vibrato.h"
+#include "effet.h"
 
 void main () 
 {
@@ -37,30 +38,30 @@ void main ()
 		printf("DOH!");
 	}
 
-	//printf("---------------------------------------\n");
-	//printf("Test d'inversion\n");
-	//printf("---------------------------------------\n");
+	/*printf("---------------------------------------\n");
+	printf("Test d'inversion\n");
+	printf("---------------------------------------\n");
 
-	//CInversion *inv = new CInversion(son);
-	//inv->Inverser();
+	CInversion *inv = new CInversion(son);
+	inv->Inverser();
 
-	//if (son->Enregistrer("c:\\druminv.wav"))
-	//{
-	//	printf("Écriture du fichier réussi\n");
-	//}
-	//else
-	//{
-	//	printf("Écriture du fichier échoué\n");
-	//}
+	if (son->Enregistrer("c:\\druminv.wav"))
+	{
+		printf("Écriture du fichier réussi\n");
+	}
+	else
+	{
+		printf("Écriture du fichier échoué\n");
+	}
 
-	//delete inv;
+	delete inv;*/
 
 	printf("---------------------------------------\n");
 	printf("Test de vibrato\n");
 	printf("---------------------------------------\n");
 
 	CVibrato *vib = new CVibrato(son);
-	vib->Vibrer(50, 0.9);
+	vib->Vibrer((float)50, (float)0.9);
 
 	if (son->Enregistrer("c:\\drumvib.wav"))
 	{
@@ -82,5 +83,7 @@ void main ()
 	for (int i = 0; i < 1102; i++)
 	{
 		printf("%d : %.6f\n", i, lfo->getNextValeur());
-	}*/
+	}
+	delete lfo;*/
+
 }

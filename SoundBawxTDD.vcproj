@@ -103,6 +103,12 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm">
 			<File
+				RelativePath="Distortion.cpp">
+			</File>
+			<File
+				RelativePath="Effet.cpp">
+			</File>
+			<File
 				RelativePath="Inversion.cpp">
 			</File>
 			<File
@@ -124,6 +130,12 @@
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc">
+			<File
+				RelativePath="Distortion.h">
+			</File>
+			<File
+				RelativePath="Effet.h">
+			</File>
 			<File
 				RelativePath="Inversion.h">
 			</File>
