@@ -33,7 +33,7 @@ CWAVE::CWAVE(char* strnomFichier)
 				else
 					m_intnbEchantillons = (int)m_entete.Subchunk2Size / 2;
 
-				m_intcanalGauche = new int[m_intnbEchantillons];
+				m_intcanalGauche = new short[m_intnbEchantillons];
 			}
 			else
 			{
@@ -42,8 +42,8 @@ CWAVE::CWAVE(char* strnomFichier)
 				else
 					m_intnbEchantillons = (int)m_entete.Subchunk2Size / 4;
 
-				m_intcanalGauche = new int[m_intnbEchantillons];
-				m_intcanalDroite = new int[m_intnbEchantillons];
+				m_intcanalGauche = new short[m_intnbEchantillons];
+				m_intcanalDroite = new short[m_intnbEchantillons];
 			}				
 
 			// Lecture du reste du fichier
@@ -62,7 +62,7 @@ CWAVE::CWAVE(char* strnomFichier)
 				else if (m_entete.BitsPerSample == 8)
 				{
 					fread(&bytvaleur, sizeof(BYTE), 1, flux);
-					m_intcanalGauche[i] = ByteToInt(bytvaleur);
+					m_intcanalGauche[i] = ByteToShort(bytvaleur);
 				}
 				if (m_entete.NumChannels == 2)
 				{
@@ -73,7 +73,7 @@ CWAVE::CWAVE(char* strnomFichier)
 					else if (m_entete.BitsPerSample == 8)
 					{
 						fread(&bytvaleur, sizeof(BYTE), 1, flux);
-						m_intcanalDroite[i] = ByteToInt(bytvaleur);
+						m_intcanalDroite[i] = ByteToShort(bytvaleur);
 					}
 				}
 			}
@@ -121,7 +121,7 @@ int CWAVE::Enregistrer(char *strnomFichier)
 			}
 			else if (m_entete.BitsPerSample == 8)
 			{
-				intvaleur = IntToByte(m_intcanalGauche[i]);
+				intvaleur = ShortToByte(m_intcanalGauche[i]);
 				fwrite(&intvaleur, sizeof(BYTE), 1, flux);
 			}
 			if (m_entete.NumChannels == 2)
@@ -132,7 +132,7 @@ int CWAVE::Enregistrer(char *strnomFichier)
 				}
 				else if (m_entete.BitsPerSample == 8)
 				{
-					intvaleur = IntToByte(m_intcanalDroite[i]);
+					intvaleur = ShortToByte(m_intcanalDroite[i]);
 					fwrite(&intvaleur, sizeof(BYTE), 1, flux);
 				}
 			}
@@ -144,13 +144,13 @@ int CWAVE::Enregistrer(char *strnomFichier)
 }
 
 // Fonction de conversion de Byte à Int
-int CWAVE::ByteToInt(BYTE valeur)
+short CWAVE::ByteToShort(BYTE valeur)
 {
 	return (valeur - 127) * 256;
 }
 
 // Fonction de conversion de Int à Byte
-BYTE CWAVE::IntToByte(int valeur)
+BYTE CWAVE::ShortToByte(short valeur)
 {
 	return (valeur / 256) + 127;
 }
@@ -160,24 +160,14 @@ WAVEHEADER CWAVE::Entete(void)
 	return m_entete;
 }
 
-int* CWAVE::getCanalGauche(void)
+short* CWAVE::getCanalGauche(void)
 {
 	return m_intcanalGauche;
 }
 
-int* CWAVE::getCanalDroite(void)
+short* CWAVE::getCanalDroite(void)
 {
 	return m_intcanalDroite;
-}
-
-void CWAVE::setCanalDroite(int* intvaleurs)
-{
-	m_intcanalDroite = intvaleurs;
-}
-
-void CWAVE::setCanalGauche(int* intvaleurs)
-{
-	m_intcanalGauche = intvaleurs;
 }
 
 int CWAVE::getNbEchantillon(void)

@@ -28,18 +28,16 @@ public:
 	~CWAVE(void);
 	int Enregistrer(char* strnomFichier);
 	WAVEHEADER Entete(void);
-    int* getCanalGauche(void);
-	int* getCanalDroite(void);
+    short* getCanalGauche(void);
+	short* getCanalDroite(void);
 	int getNbEchantillon(void);
-	void setCanalGauche(int*);
-	void setCanalDroite(int*);
 
 private:
-	int ByteToInt(BYTE valeur);
-	BYTE IntToByte(int valeur);
+	short ByteToShort(BYTE valeur);
+	BYTE ShortToByte(short valeur);
 	char* m_strnomFichier;
-	int* m_intcanalGauche;
-    int* m_intcanalDroite;
+	short* m_intcanalGauche;
+    short* m_intcanalDroite;
 	int m_intnbEchantillons;
 	WAVEHEADER m_entete;
 };

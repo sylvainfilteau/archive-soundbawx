@@ -7,24 +7,21 @@ CInversion::CInversion(CWAVE* son)
 
 void CInversion::Inverser()
 {
-	int *intCanalGauche = m_son->getCanalGauche();
-	int *intCanalDroite = m_son->getCanalDroite();
-	int inttmp = 0;
+	short *shtCanalGauche = m_son->getCanalGauche();
+	short *shtCanalDroite = m_son->getCanalDroite();
+	short shttmp = 0;
 	
     for (int i = 0; i < m_son->getNbEchantillon() / 2; i++)
 	{
-		inttmp = intCanalGauche[i];
-		intCanalGauche[i] = intCanalGauche[m_son->getNbEchantillon() - i];
-		intCanalGauche[m_son->getNbEchantillon() - i] = inttmp;
-	}
+		shttmp = shtCanalGauche[i];
+		shtCanalGauche[i] = shtCanalGauche[m_son->getNbEchantillon() - i];
+		shtCanalGauche[m_son->getNbEchantillon() - i] = shttmp;
 
-	if (m_son->Entete().NumChannels == 2)
-	{	
-		for (int i = 0; i < m_son->getNbEchantillon() / 2; i++)
+		if (m_son->Entete().NumChannels == 2)
 		{
-			inttmp = intCanalDroite[i];
-			intCanalDroite[i] = intCanalDroite[m_son->getNbEchantillon() - i];
-			intCanalDroite[m_son->getNbEchantillon() - i] = inttmp;
+			shttmp = shtCanalDroite[i];
+			shtCanalDroite[i] = shtCanalDroite[m_son->getNbEchantillon() - i];
+			shtCanalDroite[m_son->getNbEchantillon() - i] = shttmp;
 		}
 	}
 }

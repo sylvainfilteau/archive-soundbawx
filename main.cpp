@@ -12,9 +12,9 @@ void main ()
 	printf("Test de CWAVE\n");
 	printf("---------------------------------------\n");
 
-	CWAVE *son = new CWAVE("c:\\testson\\tada.wav");
+	CWAVE *son = new CWAVE("c:\\testson\\drum.wav");
 
-	if (son != 0)
+	if (son != 0) // Je crois que cette vérification est inutile car elle est toujours vrai.
 	{
 		printf("OK\n");
 		printf("Canaux:		%d\n", son->Entete().NumChannels);
@@ -23,7 +23,7 @@ void main ()
 		printf("SampleRate:	%d\n", son->Entete().SampleRate);
 		printf("ByteRate:	%d\n", son->Entete().ByteRate);
 
-		if (son->Enregistrer("c:\\tada2.wav"))
+		if (son->Enregistrer("c:\\drum2.wav"))
 		{
 			printf("Écriture du fichier réussi\n");
 		}
@@ -44,7 +44,7 @@ void main ()
 	//CInversion *inv = new CInversion(son);
 	//inv->Inverser();
 
-	//if (son->Enregistrer("c:\\tadainv.wav"))
+	//if (son->Enregistrer("c:\\druminv.wav"))
 	//{
 	//	printf("Écriture du fichier réussi\n");
 	//}
@@ -60,9 +60,9 @@ void main ()
 	printf("---------------------------------------\n");
 
 	CVibrato *vib = new CVibrato(son);
-	vib->Vibrer(50, 0.8);
+	vib->Vibrer(50, 0.9);
 
-	if (son->Enregistrer("c:\\tadavib.wav"))
+	if (son->Enregistrer("c:\\drumvib.wav"))
 	{
 		printf("Écriture du fichier réussi\n");
 	}
