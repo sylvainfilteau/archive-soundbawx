@@ -37,30 +37,30 @@ void main ()
 		printf("DOH!");
 	}
 
-	printf("---------------------------------------\n");
-	printf("Test d'inversion\n");
-	printf("---------------------------------------\n");
+	//printf("---------------------------------------\n");
+	//printf("Test d'inversion\n");
+	//printf("---------------------------------------\n");
 
-	CInversion *inv = new CInversion(son);
-	inv->Inverser();
+	//CInversion *inv = new CInversion(son);
+	//inv->Inverser();
 
-	if (son->Enregistrer("c:\\druminv.wav"))
-	{
-		printf("Écriture du fichier réussi\n");
-	}
-	else
-	{
-		printf("Écriture du fichier échoué\n");
-	}
+	//if (son->Enregistrer("c:\\druminv.wav"))
+	//{
+	//	printf("Écriture du fichier réussi\n");
+	//}
+	//else
+	//{
+	//	printf("Écriture du fichier échoué\n");
+	//}
 
-	delete inv;
+	//delete inv;
 
 	printf("---------------------------------------\n");
 	printf("Test de vibrato\n");
 	printf("---------------------------------------\n");
 
 	CVibrato *vib = new CVibrato(son);
-	vib->Vibrer(50, 80);
+	vib->Vibrer(son->getNbEchantillon(), 0.80);
 
 	if (son->Enregistrer("c:\\drumvib.wav"))
 	{
