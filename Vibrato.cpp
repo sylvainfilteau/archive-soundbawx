@@ -2,31 +2,38 @@
 #include "LFO.h"
 #include "Tools.h"
 
-CVibrato::CVibrato(CWAVE *son) : CEffet(son)
-{
-}
+CVibrato::CVibrato(CWAVE *son) : CEffet(son){}
 
-void CVibrato::Vibrer(float frequence, float mix)
+int CVibrato::Vibrer(float frequence, float mix)
 {
 	CTools tool;
-	CLFO *lfo = new CLFO(LFOSIN, tool.NbEchantillonsParCycle(frequence, m_son->Entete().SampleRate));
-	short *shtCanalG = m_son->getCanalGauche();
-	short *shtCanalD = m_son->getCanalDroite();
-	float tmpLfo;
+	CLFO *lfo;
+	int ret = 0;
 
-	for (int i = 0; i < m_son->getNbEchantillon(); i++)
+	// Vérification de la valeur de mix, elle ne peut pas être plus
+	// grande que 1 et plus petite que 0;
+	if (mix >= 0 && mix <= 1)
 	{
-		tmpLfo = lfo->getNextValeur();
-		if (tmpLfo != 1)
+		lfo = new CLFO(LFOSIN, tool.NbEchantillonsParCycle(frequence, m_son->Entete().SampleRate));
+
+		if (m_son->Backup())
 		{
-			shtCanalG[i] = tool.Mixer(shtCanalG[i], shtCanalG[i] * tmpLfo, mix);
-			
-			if (m_son->Entete().NumChannels == 2)
+			for (int i = 0; i < m_son->getNbEchantillon(); i++)
 			{
-				shtCanalD[i] = tool.Mixer(shtCanalD[i], shtCanalD[i] * tmpLfo, mix);
+				m_son->getCanalGauche()[i] = tool.Mixer(m_son->getCanalGauche()[i], 
+					m_son->getCanalGauche()[i] * lfo->getNextValeur(), mix);
+				
+				if (m_son->Entete().NumChannels == 2)
+				{
+					m_son->getCanalDroite()[i] = tool.Mixer(m_son->getCanalDroite()[i], 
+						m_son->getCanalDroite()[i] * lfo->getCurrentValue(), mix);
+				}
 			}
+			ret = 1;
 		}
+
+		delete lfo;
 	}
 
-	delete lfo;
+	return ret;
 }

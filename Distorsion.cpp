@@ -18,6 +18,8 @@ void CDistorsion::Distorsionner(int valmultiplie)
 			maxdroite = m_son->getCanalDroite()[i];
 	}
 
+	m_son->Backup();
+
 	for (int i = 0; i < m_son->getNbEchantillon(); i++)
 	{
 		if ((m_son->getCanalGauche()[i] * valmultiplie) > maxgauche)

@@ -10,6 +10,8 @@ void CInversion::Inverser()
 	short *shtCanalDroite = m_son->getCanalDroite();
 	short shttmp = 0;
 	
+	m_son->Backup();
+
     for (int i = 0; i < m_son->getNbEchantillon() / 2; i++)
 	{
 		shttmp = shtCanalGauche[i];
