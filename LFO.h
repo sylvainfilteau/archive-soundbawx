@@ -39,6 +39,10 @@ public:
 	 * @return La valeur du LFO à la poisition du pointeur.
 	 */
 	float getNextValeur();
+	//! \brief Méthode qui reset le pointeur de la valeur du LFO.
+	void Reset();
+	//! \brief Méthode qui retourne la valeur actuelle du LFO.
+	float getCurrentValue();
 private:
 	//! \brief Méthode qui génère la courbe de forme Sinusoïdale.
 	void Sinus(void);
@@ -47,4 +51,5 @@ private:
 	int m_intlfoType; //!< Donnée membre qui donne le type du LFO.
 	int m_intphase; //!< Donnée membre qui donne la grandeur du cycle.
 	float* m_fltvaleurs; //!< Vecteur de la longueur de la phase qui stock la courbe.
+	int m_intposition; //!< Compteur qui définit où on est rendu dans la lecture du LFO
 };

@@ -7,6 +7,7 @@ CLFO::CLFO(int intlfoType, int intphase)
 	m_intlfoType = intlfoType;
 	m_intphase = intphase;
 	m_fltvaleurs = new float[intphase];
+	Reset();
 
 	// Selon le type, on calcul la courbe avec la fonction requise
 	switch (intlfoType)
@@ -53,11 +54,21 @@ void CLFO::Triangle()
 		m_fltvaleurs[i] = val;
 	}
 }
-int intposition;
+
 float CLFO::getNextValeur()
 {
-	if (intposition >= m_intphase) intposition = 0;
-	return m_fltvaleurs[intposition++];
+	if (m_intposition >= m_intphase) m_intposition = 0;
+	return m_fltvaleurs[m_intposition++];
+}
+
+void CLFO::Reset()
+{
+	m_intposition = 0;
+}
+
+float CLFO::getCurrentValue()
+{
+	return m_fltvaleurs[m_intposition];
 }
 
 int CLFO::getLfoType()
