@@ -22,11 +22,14 @@ void CVibrato::Vibrer(float frequence, float mix)
 	for (int i = 0; i < m_son->getNbEchantillon(); i++)
 	{
 		tmpLfo = lfo->getNextValeur();
-		intCanalG[i] = (int)((1-mix)*intCanalG[i]) + (int)(intCanalG[i] * tmpLfo * mix);
-		
-		if (m_son->Entete().NumChannels == 2)
+		if (tmpLfo != 1)
 		{
-			intCanalD[i] = (int)((1-mix)*intCanalD[i]) + (int)(intCanalD[i] * tmpLfo * mix);
+			intCanalG[i] = (short)((1-mix)*intCanalG[i]) + (short)(intCanalG[i] * tmpLfo * mix);
+			
+			if (m_son->Entete().NumChannels == 2)
+			{
+				intCanalD[i] = (short)((1-mix)*intCanalD[i]) + (short)(intCanalD[i] * tmpLfo * mix);
+			}
 		}
 	}
 
