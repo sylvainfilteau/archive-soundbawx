@@ -24,4 +24,6 @@ public:
 	int NbEchantillonsParCycle(float vitesse, float frequence);
 	//! \brief Retourne le résultat d'un son mixer à un pourcentage donnée avec un autre son.
 	short Mixer(short son1, short son2, float mix);
+	//! \brief Copie le son dans un autre vecteur.
+	void SoundCopier(short *orig, short *copie, int longueur);
 };

@@ -71,7 +71,7 @@ void main ()
 		printf("Écriture du fichier échoué\n");
 	}
 
-	delete inv;*/
+	delete inv;
 
 	printf("---------------------------------------\n");
 	printf("Test de vibrato\n");
@@ -129,9 +129,9 @@ void main ()
 		{
 			printf("Écriture du fichier échoué\n");
 		}
-	}
+	}*/
 
-	/*printf("---------------------------------------\n");
+	printf("---------------------------------------\n");
 	printf("Test de distorision\n");
 	printf("---------------------------------------\n");
 
@@ -149,7 +149,7 @@ void main ()
 
 	delete dis;
 
-	printf("---------------------------------------\n");
+	/*printf("---------------------------------------\n");
 	printf("Test de CLFO\n");
 
 	CLFO *lfo = new CLFO(LFOSIN, 100);

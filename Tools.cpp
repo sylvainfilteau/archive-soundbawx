@@ -22,6 +22,14 @@ int CTools::StringComparer( char *string1, char *string2, int nbChar )
 	return 1;
 }
 
+void SoundCopier( short *orig, short *copie, int longueur)
+{
+	for (int i = 0; i < longueur; i++)
+	{
+		copie[i] = orig[i];
+	}
+}
+
 int CTools::MsToNbSamples(int ms, int debit)
 {
 		return ms / 1000 * debit;

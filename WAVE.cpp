@@ -74,7 +74,7 @@ int CWAVE::Ouvrir()
 			en 16 bits, c'est un signed int. Il faut donc faire une conversion
 			à l'aide de la fonction ByteToInt
 			*/
-			for (int i = 0; i < m_intnbEchantillons; i++)
+			for (int i = 0; i < m_intnbEchantillons - 1; i++)
 			{
 
 				if (m_entete.BitsPerSample == 16)
@@ -131,7 +131,7 @@ int CWAVE::Enregistrer(char *strnomFichier)
 	else
 	{
 		fwrite(&m_entete, sizeof(WAVEHEADER), 1, flux);
-		for (int i = 0; i < m_intnbEchantillons; i++)
+		for (int i = 0; i < m_intnbEchantillons - 1; i++)
 		{
 			if (m_entete.BitsPerSample == 16)
 			{

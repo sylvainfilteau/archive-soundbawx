@@ -24,9 +24,9 @@ void CInversion::Inverser()
 
 		if (m_son->Stereo())
 		{
-			shttmp = shtCanalDroite[i];
-			m_son->getCanalDroite[i] = m_son->getCanalDroite[m_son->getNbEchantillon() - i];
-			m_son->getCanalDroite[m_son->getNbEchantillon() - i] = shttmp;
+			shttmp = m_son->getCanalDroite()[i];
+			m_son->getCanalDroite()[i] = m_son->getCanalDroite()[m_son->getNbEchantillon() - i];
+			m_son->getCanalDroite()[m_son->getNbEchantillon() - i] = shttmp;
 		}
 	}
 }
