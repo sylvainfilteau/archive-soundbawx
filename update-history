@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Convert the commit message encoding from ISO-8859-1 to UTF-8
+git filter-branch -f --msg-filter '
+while read LINE
+do
+	echo $LINE | iconv -f ISO-8859-1 -t utf-8
+done
+' --commit-filter '
+if [ "$GIT_COMMITTER_NAME" = "cid" ];
+then
+	GIT_COMMITTER_NAME="Sylvain Filteau";
+	GIT_AUTHOR_NAME="Sylvain Filteau";
+	GIT_COMMITTER_EMAIL="cidsphere@gmail.com";
+	GIT_AUTHOR_EMAIL="cidsphere@gmail.com";
+	git commit-tree "$@";
+else
+	git commit-tree "$@";
+fi' HEAD
