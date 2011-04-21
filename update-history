@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# Convert the commit message encoding from ISO-8859-1 to UTF-8
+# Script that convert update the history from a GIT repository
+# that was imported from CVS.
+
+# The first part convert the commit message encoding from ISO-8859-1 to UTF-8.
+# The second part update my name to reflect my new identity (no nickname now !).
 git filter-branch -f --msg-filter '
 while read LINE
 do
